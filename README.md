@@ -1,89 +1,71 @@
 # thebuildmaestro-website-go
 
-A Go-based static site generator for [thebuildmaestro.com](https://thebuildmaestro.com). This project is a modern rewrite of the original Flask/Python website, maintaining full compatibility with the existing content structure while modernizing the frontend with HTMX and Tailwind CSS.
+This is the Go version of my personal website, [thebuildmaestro.com](https://thebuildmaestro.com). I originally built it with Python and Flask, but I've been doing more work in Go lately and decided I wanted to maintain it in Go going forward.
 
-**Original Flask Project**: [github.com/niski84/thebuildmaestro-website](https://github.com/niski84/thebuildmaestro-website)
+The original Flask version is still available at [github.com/niski84/thebuildmaestro-website](https://github.com/niski84/thebuildmaestro-website) if you want to see what it looked like before.
+
+## What It Does
+
+It's a static site generator. I write my blog posts and project descriptions in Markdown files, and this tool converts them to HTML. The content structure stayed the same from the Flask version—I just rewrote the generator in Go.
 
 ## Features
 
-- **File-based Content Management**: Reads INI-style metadata files and Markdown content from directories
-- **Static Site Generation**: Pre-renders all pages at build time for fast, static hosting
-- **Modern Frontend**: Uses Tailwind CSS and HTMX for a modern, responsive UI
-- **Full Compatibility**: Maintains compatibility with the existing Flask project's content structure
-- **Atom Feed**: Generates RSS/Atom feed for recent articles
-- **Photo Gallery**: Displays photos with thumbnails in a responsive grid
-- **Code Highlighting**: Syntax highlighting for code blocks using Chroma
+- Reads markdown files and converts them to HTML
+- Uses the same content structure as the Flask version (INI metadata files, README.md files)
+- Generates a static site you can host anywhere
+- Uses Tailwind CSS and HTMX for the frontend (replaced Bootstrap and jQuery)
+- Syntax highlighting for code blocks
+- Generates an Atom feed for RSS readers
+- Photo gallery with thumbnails
 
 ## Project Structure
 
 ```
 thebuildmaestro-website-go/
-├── cmd/
-│   └── sitegen/
-│       └── main.go              # CLI entry point
-├── internal/
-│   └── sitegen/
-│       ├── sitegen.go           # Core generator logic
-│       ├── content.go           # Content loading and metadata parsing
-│       ├── templates.go         # Template rendering
-│       ├── markdown.go          # Markdown processing
-│       ├── feed.go              # Atom feed generation
-│       └── sitegen_test.go      # Integration tests
-├── templates/
-│   ├── base.html                # Base template (HTMX + Tailwind)
-│   ├── articles.html            # Articles listing
-│   ├── article-display.html     # Individual article
-│   ├── code.html                # Code projects listing
-│   ├── photos.html              # Photo gallery
-│   └── contact.html             # Contact page
-├── static/
-│   ├── content/                 # Source content (from Flask project)
-│   │   ├── articles/
-│   │   └── code/
-│   ├── files/
-│   │   └── photos/
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── public/                      # Generated output (build directory)
-└── go.mod                       # Go module definition
+├── cmd/sitegen/main.go          # The CLI tool
+├── internal/sitegen/            # The actual generator code
+│   ├── sitegen.go               # Main generation logic
+│   ├── content.go                # Reads and parses content
+│   ├── templates.go             # Handles HTML templates
+│   ├── markdown.go              # Converts markdown to HTML
+│   └── feed.go                  # Generates the Atom feed
+├── templates/                    # HTML templates
+├── static/                       # Source content and assets
+│   ├── content/                  # My blog posts and code projects
+│   ├── images/                  # Images
+│   └── css/js/                 # CSS and JavaScript
+└── public/                       # Generated output (this gets deployed)
 ```
 
 ## Content Structure
 
-The generator expects content in the following structure (compatible with the Flask project):
+I organize my content like this:
 
 ```
-static/content/articles/<id>/
-  ├── metadata          # INI format with title, author, dates, etc.
-  └── README.md        # Markdown content
-  └── [other assets]   # Images, files referenced in markdown
+static/content/articles/<article-id>/
+  ├── metadata          # INI file with title, author, dates, etc.
+  └── README.md        # The actual markdown content
+  └── [images/files]   # Any images or files for that article
 
-static/content/code/<id>/
+static/content/code/<project-id>/
   ├── metadata
   └── README.md
 ```
 
-### Metadata File Format
-
-The `metadata` file uses INI format:
+The metadata file is just a simple INI file:
 
 ```ini
 [metadata]
-title: Article Title
-author: Author Name
+title: My Article Title
+author: Nicholas Skitch
 last_updated: 2024-01-15
 written_on: 2024-01-15
-description: Article description
-distributions: RHEL_7 CentOS_7 Ubuntu_20.04
-url: https://example.com (optional, for external links)
+description: What this article is about
 ```
 
 ## Installation
 
-1. Ensure you have Go 1.22 or later installed
-2. Clone or navigate to the project directory
-3. Install dependencies:
+You need Go 1.22 or later. Then just:
 
 ```bash
 go mod download
@@ -91,17 +73,15 @@ go mod download
 
 ## Usage
 
-### Basic Usage
-
-Generate the static site with default paths:
+Run the generator:
 
 ```bash
 go run ./cmd/sitegen
 ```
 
-### Custom Paths
+This will read everything from `static/content`, convert it to HTML, and output it to the `public/` directory.
 
-Specify custom paths for content, templates, static files, and output:
+You can also customize the paths:
 
 ```bash
 go run ./cmd/sitegen \
@@ -112,120 +92,79 @@ go run ./cmd/sitegen \
   -domain https://thebuildmaestro.com
 ```
 
-### Command Line Flags
-
-- `-content`: Path to content directory (default: `static/content`)
-- `-template`: Path to templates directory (default: `templates`)
-- `-static`: Path to static assets directory (default: `static`)
-- `-out`: Path to output directory (default: `public`)
-- `-domain`: Canonical domain for URLs (default: `https://thebuildmaestro.com`)
-
-### Build Binary
-
-Build a standalone binary:
+Or build a binary:
 
 ```bash
 go build -o sitegen ./cmd/sitegen
-./sitegen -content static/content -out public
+./sitegen
 ```
 
-## Generated Output
+## What Gets Generated
 
-The generator creates the following structure in the output directory:
+The generator creates a `public/` directory with:
 
-```
-public/
-├── index.html              # Redirects to /articles/
-├── articles/
-│   ├── index.html          # Articles listing
-│   └── <id>/
-│       ├── index.html      # Article page
-│       └── [assets]        # Copied from source
-├── code/
-│   └── index.html          # Code listing
-├── photos/
-│   └── index.html          # Photo gallery
-├── contact/
-│   └── index.html          # Contact page
-├── atom.xml                # RSS feed
-├── robots.txt
-├── favicon.ico
-└── static/                 # Copied static assets
-```
+- `index.html` - redirects to `/articles/`
+- `articles/` - all my blog posts
+- `code/` - code project listings
+- `photos/` - photo gallery
+- `contact/` - contact page
+- `atom.xml` - RSS feed
+- `static/` - all the CSS, images, JS files
 
-## Migration from Flask Project
+Then I just deploy the `public/` directory to wherever I'm hosting (S3, Netlify, etc.).
 
-This generator is designed to be compatible with the existing Flask project structure. The original Flask/Python project can be found at [github.com/niski84/thebuildmaestro-website](https://github.com/niski84/thebuildmaestro-website).
+## Migration from Flask
 
-### Compatibility
+If you're migrating from the Flask version, the good news is the content structure is exactly the same. I kept all the same file formats and directory layouts so the migration was straightforward.
 
-1. **Content Compatibility**: The generator reads the same metadata files and Markdown structure
-2. **URL Structure**: Maintains the same URL paths (`/articles/`, `/code/`, etc.)
-3. **Asset Handling**: Copies article assets and static files to the same locations
+The original Flask project is at [github.com/niski84/thebuildmaestro-website](https://github.com/niski84/thebuildmaestro-website).
 
-### Migration Steps
+To migrate:
 
-1. Clone or download the original Flask project:
+1. Clone the original Flask project to get the content:
    ```bash
    git clone https://github.com/niski84/thebuildmaestro-website.git
    ```
 
-2. Copy your existing content from the Flask project:
+2. Copy your content over:
    ```bash
    cp -r thebuildmaestro-website/static/content thebuildmaestro-website-go/static/
    cp -r thebuildmaestro-website/static/files thebuildmaestro-website-go/static/
+   cp -r thebuildmaestro-website/static/images thebuildmaestro-website-go/static/
    cp thebuildmaestro-website/static/robots.txt thebuildmaestro-website-go/static/
    cp thebuildmaestro-website/static/favicon.ico thebuildmaestro-website-go/static/
    ```
 
-3. Copy images and other static assets:
-   ```bash
-   cp -r thebuildmaestro-website/static/images thebuildmaestro-website-go/static/
-   ```
-
-4. Generate the site:
+3. Generate the site:
    ```bash
    go run ./cmd/sitegen
    ```
 
-5. Deploy the `public/` directory to your hosting service (S3, Netlify, etc.)
+4. Deploy the `public/` directory.
 
-## Technology Stack
+That's it. The content structure is compatible, so everything should just work.
 
-- **Go 1.22+**: Core language
-- **Goldmark**: Markdown processing
-- **Chroma**: Syntax highlighting
-- **Tailwind CSS**: Styling (via CDN)
-- **HTMX**: Interactive features (via CDN)
-- **Gorilla Feeds**: Atom feed generation
-- **INI Parser**: Metadata file parsing
+## Tech Stack
 
-## Development
+- **Go** - The language I rewrote it in
+- **Goldmark** - Markdown parser (Go equivalent of Python-Markdown)
+- **Chroma** - Syntax highlighting (replaces Pygments)
+- **Tailwind CSS** - For styling (via CDN)
+- **HTMX** - For any interactive stuff (via CDN)
+- **Gorilla Feeds** - For generating the Atom feed
 
-### Running Tests
+## Why Go?
+
+Honestly? Because I wanted to. I've been writing more Go code lately, and it felt like the right time to consolidate. Go compiles to a single binary, which makes deployment trivial. No virtual environments, no pip installs, no runtime dependencies. Just build it and ship it.
+
+Plus, Go's standard library is really solid. File operations, templating, HTTP serving—it's all there. I didn't need to pull in a bunch of external dependencies. The whole generator is pretty lean.
+
+## Running Tests
 
 ```bash
 go test ./internal/sitegen -v
 ```
 
-### Code Structure
-
-- `internal/sitegen/content.go`: Handles loading and parsing content metadata
-- `internal/sitegen/markdown.go`: Converts Markdown to HTML with syntax highlighting
-- `internal/sitegen/templates.go`: Manages template loading and rendering
-- `internal/sitegen/sitegen.go`: Core generation logic
-- `internal/sitegen/feed.go`: Atom feed generation
-- `cmd/sitegen/main.go`: CLI entry point
-
-## Logging
-
-All exported functions log their input parameters before executing business logic. The main function logs:
-- Start of generation
-- Progress through each step
-- Completion or errors
-- Exits with non-zero code on errors
-
 ## License
 
 BSD (same as the original Flask project)
-

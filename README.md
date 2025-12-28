@@ -1,6 +1,8 @@
 # thebuildmaestro-website-go
 
-A Go-based static site generator for [thebuildmaestro.com](https://thebuildmaestro.com). This project is a modern rewrite of the original Flask/Python website (`thebuildmaestro-website`), maintaining full compatibility with the existing content structure while modernizing the frontend with HTMX and Tailwind CSS.
+A Go-based static site generator for [thebuildmaestro.com](https://thebuildmaestro.com). This project is a modern rewrite of the original Flask/Python website, maintaining full compatibility with the existing content structure while modernizing the frontend with HTMX and Tailwind CSS.
+
+**Original Flask Project**: [github.com/niski84/thebuildmaestro-website](https://github.com/niski84/thebuildmaestro-website)
 
 ## Features
 
@@ -153,7 +155,9 @@ public/
 
 ## Migration from Flask Project
 
-This generator is designed to be compatible with the existing Flask project structure:
+This generator is designed to be compatible with the existing Flask project structure. The original Flask/Python project can be found at [github.com/niski84/thebuildmaestro-website](https://github.com/niski84/thebuildmaestro-website).
+
+### Compatibility
 
 1. **Content Compatibility**: The generator reads the same metadata files and Markdown structure
 2. **URL Structure**: Maintains the same URL paths (`/articles/`, `/code/`, etc.)
@@ -161,25 +165,30 @@ This generator is designed to be compatible with the existing Flask project stru
 
 ### Migration Steps
 
-1. Copy your existing content from the Flask project:
+1. Clone or download the original Flask project:
    ```bash
-   cp -r /path/to/flask-project/static/content thebuildmaestro-website-go/static/
-   cp -r /path/to/flask-project/static/files thebuildmaestro-website-go/static/
-   cp /path/to/flask-project/static/robots.txt thebuildmaestro-website-go/static/
-   cp /path/to/flask-project/static/favicon.ico thebuildmaestro-website-go/static/
+   git clone https://github.com/niski84/thebuildmaestro-website.git
    ```
 
-2. Copy images and other static assets:
+2. Copy your existing content from the Flask project:
    ```bash
-   cp -r /path/to/flask-project/static/images thebuildmaestro-website-go/static/
+   cp -r thebuildmaestro-website/static/content thebuildmaestro-website-go/static/
+   cp -r thebuildmaestro-website/static/files thebuildmaestro-website-go/static/
+   cp thebuildmaestro-website/static/robots.txt thebuildmaestro-website-go/static/
+   cp thebuildmaestro-website/static/favicon.ico thebuildmaestro-website-go/static/
    ```
 
-3. Generate the site:
+3. Copy images and other static assets:
+   ```bash
+   cp -r thebuildmaestro-website/static/images thebuildmaestro-website-go/static/
+   ```
+
+4. Generate the site:
    ```bash
    go run ./cmd/sitegen
    ```
 
-4. Deploy the `public/` directory to your hosting service (S3, Netlify, etc.)
+5. Deploy the `public/` directory to your hosting service (S3, Netlify, etc.)
 
 ## Technology Stack
 

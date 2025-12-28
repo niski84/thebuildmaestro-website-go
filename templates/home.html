@@ -35,7 +35,28 @@
 		.hero-bg-layer-1 {
 			background-image: url('/static/images/hero/me232232.jpg');
 			background-size: cover;
-			background-position: center;
+			background-position: center top;
+			background-repeat: no-repeat;
+		}
+		
+		/* Responsive background positioning to keep face visible */
+		@media (min-width: 1024px) {
+			.hero-bg-layer-1 {
+				background-position: center 20%;
+			}
+		}
+		
+		@media (max-width: 1023px) {
+			.hero-bg-layer-1 {
+				background-position: center 15%;
+			}
+		}
+		
+		@media (max-width: 768px) {
+			.hero-bg-layer-1 {
+				background-position: center 10%;
+				background-size: cover;
+			}
 		}
 		
 		.hero-bg-layer-2 {
@@ -145,10 +166,10 @@
 		<div class="parallax-bg parallax-layer-1 hero-bg-layer-1" data-speed="0.1"></div>
 		<!-- Background layer 2 - desert landscape (secondary, faster scroll, appears in gap) -->
 		<div class="parallax-bg parallax-layer-2 hero-bg-layer-2" data-speed="0.7"></div>
-		<!-- Gradient scrim for readability -->
-		<div class="gradient-scrim"></div>
+		<!-- Gradient scrim for readability - lighter at top to show face -->
+		<div class="gradient-scrim hero-scrim"></div>
 		<!-- Content with glass panel -->
-		<div class="parallax-content min-h-screen flex items-center justify-center relative">
+		<div class="parallax-content min-h-screen flex items-center justify-center relative pt-48 md:pt-56 lg:pt-64">
 			<div class="text-center px-4">
 				<div class="glass-panel-light px-8 py-12 rounded-lg reveal mb-6">
 					<h1 class="text-6xl md:text-8xl lg:text-9xl font-black text-amber-50 mb-0 leading-tight">

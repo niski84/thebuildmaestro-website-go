@@ -21,6 +21,7 @@ type ContentMetadata struct {
 	Description  string
 	URL          string
 	ID           string
+	Image        string // Path to article thumbnail/image
 }
 
 // ContentRegistry maps content type to content ID to metadata
@@ -104,6 +105,7 @@ func parseMetadataFile(metadataPath string, contentID string) (ContentMetadata, 
 	metadata.Distributions = section.Key("distributions").MustString("")
 	metadata.Description = section.Key("description").MustString("")
 	metadata.URL = section.Key("url").MustString("")
+	metadata.Image = section.Key("image").MustString("")
 
 	return metadata, nil
 }

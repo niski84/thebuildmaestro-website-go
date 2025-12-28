@@ -4,5 +4,6 @@ author: Nicholas Skitch
 last_updated: 2025-12-27
 written_on: 2025-12-27
 description: A quick overview of various Go projects I've been working on in my goprojects directory, covering web development, database tools, automation, and more.
-distributions: 
+distributions:
+image: /static/images/companies/golang.png 
 

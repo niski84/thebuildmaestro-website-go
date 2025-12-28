@@ -7,4 +7,5 @@ distributions:
 description: A quick recap of the older Build Maestro posts that still matter, plus the problems that shaped how I build systems today.
 url: /articles/installshield_to_go_tour/
 id: installshield_to_go_tour
+image: /static/images/installshield.png
 

@@ -42,6 +42,13 @@
 				</div>
 				<hr class="border-gray-700 my-6">
 				<div class="prose prose-invert prose-lg max-w-none article-content">
+					{{if .Article.Image}}
+					<div class="float-left mr-6 mb-4 w-48 md:w-64">
+						<a href="{{.Article.Image}}" target="_blank" rel="noopener noreferrer" class="block">
+							<img src="{{.Article.Image}}" alt="{{.Article.Title}}" class="w-full h-auto rounded-lg shadow-lg hover:opacity-90 transition-opacity cursor-pointer">
+						</a>
+					</div>
+					{{end}}
 					{{.Content}}
 				</div>
 			</div>
@@ -76,6 +83,11 @@
 <style>
 	.article-content {
 		line-height: 1.75;
+	}
+	.article-content::after {
+		content: "";
+		display: table;
+		clear: both;
 	}
 	.article-content p {
 		margin-top: 1.25em;

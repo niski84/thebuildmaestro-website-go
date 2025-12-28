@@ -62,6 +62,12 @@ func NewTemplateManager(templateDir string) (*TemplateManager, error) {
 				return strings.Split(s, sep)
 			},
 			"hasPrefix": strings.HasPrefix,
+			"mod": func(a, b int) int {
+				return a % b
+			},
+			"add": func(a, b int) int {
+				return a + b
+			},
 		},
 	}
 

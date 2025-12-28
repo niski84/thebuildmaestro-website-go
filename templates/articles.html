@@ -20,6 +20,7 @@
 			</span>
 		</div>
 		<div class="list-text-content">
+			{{$index := 0}}
 			{{range $id, $details := .Metadata}}
 			{{$url := $details.URL}}
 			{{$target := "_blank"}}
@@ -27,15 +28,26 @@
 				{{$url = urlFor "render_single_article" $id}}
 				{{$target = "_self"}}
 			{{end}}
+			{{$isEven := eq (mod $index 2) 0}}
 			<a href="{{$url}}" target="{{$target}}" class="block px-6 py-4 border-b border-gray-700 hover:bg-gray-700 transition-colors" data-updated="{{$details.LastUpdated}}" data-name="{{$details.Title}}">
-				<h4 class="text-lg font-semibold mb-2">{{$details.Title}}</h4>
-				<p class="text-gray-300">
-					{{$details.Description}}
-					{{if $details.LastUpdated}}
-						<span class="text-gray-500 text-sm italic ml-2">Last updated: {{$details.LastUpdated}}</span>
+				<div class="flex items-center gap-4 {{if not $isEven}}flex-row-reverse{{end}}">
+					{{if $details.Image}}
+					<div class="flex-shrink-0">
+						<img src="{{$details.Image}}" alt="{{$details.Title}}" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg">
+					</div>
 					{{end}}
-				</p>
+					<div class="flex-1">
+						<h4 class="text-lg font-semibold mb-2">{{$details.Title}}</h4>
+						<p class="text-gray-300">
+							{{$details.Description}}
+							{{if $details.LastUpdated}}
+								<span class="text-gray-500 text-sm italic ml-2">Last updated: {{$details.LastUpdated}}</span>
+							{{end}}
+						</p>
+					</div>
+				</div>
 			</a>
+			{{$index = add $index 1}}
 			{{end}}
 		</div>
 	</div>

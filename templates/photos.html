@@ -1,0 +1,28 @@
+{{define "photos.html"}}
+{{block "content" .}}
+<div class="container mx-auto px-4 py-8">
+	<h2 class="text-3xl font-bold mb-8">Photos</h2>
+	
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+		{{range $index, $photo := .Photos}}
+		<div class="{{if eq $index 0}}sm:col-span-2 sm:row-span-2{{end}}">
+			<a href="{{$.PhotoPath}}/{{$photo.Filename}}" class="block group">
+				{{if eq $index 0}}
+					<img src="{{$.ThumbnailPath}}/{{$photo.Filename}}" 
+						 alt="{{$photo.Filename}}" 
+						 class="w-full h-full object-cover rounded-lg transition-transform group-hover:scale-105"
+						 loading="eager">
+				{{else}}
+					<img src="{{$.ThumbnailPath}}/{{$photo.Filename}}" 
+						 alt="{{$photo.Filename}}" 
+						 class="w-full h-full object-cover rounded-lg transition-transform group-hover:scale-105"
+						 loading="lazy">
+				{{end}}
+			</a>
+		</div>
+		{{end}}
+	</div>
+</div>
+{{end}}
+{{end}}
+

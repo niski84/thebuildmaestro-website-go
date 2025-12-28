@@ -1,0 +1,187 @@
+{{define "leanlabs.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#0F172A">
+
+	<!-- Tailwind CSS -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	
+	<!-- HTMX -->
+	<script src="https://unpkg.com/htmx.org@2"></script>
+	
+	<!-- Animation System CSS -->
+	<link rel="stylesheet" href="/static/css/animations.css">
+
+	<title>Lean Labs | Nicholas Skitch</title>
+	
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+		
+		* {
+			font-family: 'Inter', sans-serif;
+		}
+	</style>
+</head>
+<body class="bg-slate-900 text-gray-100 antialiased">
+	<!-- Top Bar -->
+	<div class="bg-slate-800 border-b border-slate-700 py-2">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex justify-between items-center text-sm">
+				<div class="flex items-center space-x-4">
+					<a href="mailto:nick@thebuildmaestro.com" class="text-gray-300 hover:text-white transition-colors">nick@thebuildmaestro.com</a>
+					<span class="text-slate-600">|</span>
+					<a href="tel:+16505495075" class="text-gray-300 hover:text-white transition-colors">(650) 549-5075</a>
+				</div>
+				<div class="flex items-center space-x-4">
+					<a href="https://x.com/nsturnitin" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Twitter">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+					</a>
+					<a href="https://www.linkedin.com/in/nicholas-s-06589199/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="LinkedIn">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main Navigation -->
+	<nav class="sticky top-0 left-0 right-0 z-50 bg-slate-900 border-b border-slate-700">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex justify-between items-center h-16">
+				<div class="text-xl font-bold text-white">NICHOLAS SKITCH</div>
+				<div class="hidden md:flex space-x-8">
+					<a href="/" class="text-gray-300 hover:text-white transition-colors font-medium">Home</a>
+					<a href="/articles/" class="text-gray-300 hover:text-white transition-colors font-medium">Blog</a>
+					<a href="/about/" class="text-gray-300 hover:text-white transition-colors font-medium">About Me</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Lean Labs Section -->
+	<section id="lean-labs" class="bg-slate-800 py-20">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-12 reveal">
+				<img src="/static/images/leanlabs/me_working3.jpg" alt="Working" class="mx-auto rounded-lg mb-8 max-w-2xl">
+				<h1 class="text-5xl font-bold mb-4">Macy's Labs</h1>
+				<p class="text-xl text-gray-300">takes the ideas of IdeaLab. Puts them into PRODUCTION.</p>
+			</div>
+			
+			<div class="max-w-4xl mx-auto mb-12 reveal">
+				<h2 class="text-3xl font-bold mb-6">What are Lean Labs?</h2>
+				<img src="/static/images/leanlabs/imagesearch.jpg" alt="Lean Lab Image Search" class="rounded-lg mb-6 w-full">
+				<p class="text-lg text-gray-300 mb-6">
+					*Lean Lab: Image Search pictured
+				</p>
+				<p class="text-lg text-gray-300 mb-8 leading-relaxed">
+					small empowered team who are focused on a particular theme, a particular hypothesis, and they are given autonomy. They are given empowerment to go and test what is best for our customers, to go and run multiple experiments, to test with our customers, come back with the results.
+				</p>
+			</div>
+			
+			<div class="max-w-4xl mx-auto mb-12 reveal">
+				<h2 class="text-3xl font-bold mb-6">Lean Lab</h2>
+				<img src="/static/images/leanlabs/leanlabs1.jpeg" alt="Lean Lab #1" class="rounded-lg mb-6 w-full">
+				<p class="text-lg text-gray-300 mb-4">*Lean Lab #1 pictured</p>
+				<p class="text-lg text-gray-300 mb-4 italic leading-relaxed">
+					In the CTO's words:<br>
+					"One of the tools in our labs is what we call lean startups. In April 2014, we kicked off our first lean startup at Macy's, and today we are running twenty-two lean startups. "
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Working in Lean Labs - Problems/Solutions -->
+	<section id="lean-labs-problems" class="bg-slate-800 py-20">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<h2 class="text-4xl font-bold text-center mb-12 reveal">Working in "Lean Labs"</h2>
+			<p class="text-center text-gray-300 mb-12 reveal">Below are some of the problems I was asked to solve while working in the DevOps role of 4 "Lean Labs" at Macys.</p>
+			
+			<div class="space-y-12 max-w-4xl mx-auto stagger-group">
+				<!-- Problem 1 -->
+				<div class="glass-panel rounded-lg p-8 reveal">
+					<h3 class="text-2xl font-bold mb-4 text-teal-400">"Nick, you own these environments. It's up to you to monitor them and FAST! The duration of this lab is only 3 weeks."</h3>
+					<p class="text-gray-300 mb-4 font-semibold">solution:</p>
+					<p class="text-gray-300 leading-relaxed">I wrote this script in python that I named "heartbeats". Performs a variety of health checks as simple as ping, to validating a json api response and even ensuring an sftp login works.</p>
+					<a href="https://github.com/nickskitch/work" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors mt-4 inline-block">Learn More →</a>
+				</div>
+				
+				<!-- Problem 2 -->
+				<div class="glass-panel rounded-lg p-8 reveal">
+					<h3 class="text-2xl font-bold mb-4 text-teal-400">"Nick, the federated cloud environment that the Release Engineering deptartment provisioned for us expired. This keeps happening and we have no control because RE owns these environments".</h3>
+					<p class="text-gray-300 mb-4 font-semibold">solution:</p>
+					<p class="text-gray-300 leading-relaxed">Researched and discovered metadata for Time To Live in days before these environments are destroyed (which would cause considerable delay for my team). Wrote a python script to periodically check this value and provide an alert when expiration was near.</p>
+					<a href="https://github.com/nickskitch/work" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors mt-4 inline-block">Learn More →</a>
+				</div>
+				
+				<!-- Problem 3 -->
+				<div class="glass-panel rounded-lg p-8 reveal">
+					<h3 class="text-2xl font-bold mb-4 text-teal-400">"Nick, some of the code our team's developers check into a legacy monolithic code base along with the rest of the enterprise. Sometimes their code is delayed in CI due to a build error and we are not alerted. Can you keep an eye on their specific build jobs and personally ensure their code is merged to master?"</h3>
+					<p class="text-gray-300 mb-4 font-semibold">solution:</p>
+					<p class="text-gray-300 leading-relaxed">Researched some endpoints in gerrit and discovered I could use the employees ID number or Name and query each of the git repos to be alerted of their checkins.</p>
+					<a href="https://github.com/nickskitch/work" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors mt-4 inline-block">Learn More →</a>
+				</div>
+				
+				<!-- Problem 4 -->
+				<div class="glass-panel rounded-lg p-8 reveal">
+					<h3 class="text-2xl font-bold mb-4 text-teal-400">"Nick, for our federated cloud environments owned by the RE team, can you deploy the artifacts in the evening after all our team's developers have checked in their code for the day so that the environments are ready in the morning for showcase in our morning standup meetings?"</h3>
+					<p class="text-gray-300 mb-4 font-semibold">solution:</p>
+					<p class="text-gray-300 leading-relaxed">The RE team provides a multi-page web portal as a front end for uDeploy and would not share access. I worked with one of their RE contacts and he enabled an API for deployments and here is a pyhon script I used with a json payload to start a deployment in their environments.</p>
+					<a href="https://github.com/nickskitch/work" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors mt-4 inline-block">Learn More →</a>
+				</div>
+				
+				<!-- Problem 5 -->
+				<div class="glass-panel rounded-lg p-8 reveal">
+					<h3 class="text-2xl font-bold mb-4 text-teal-400">"Nick, is there a way you can notify us in Skype when X is complete?"</h3>
+					<p class="text-gray-300 mb-4 font-semibold">solution:</p>
+					<p class="text-gray-300 leading-relaxed">python messaging wrapper can be called from any of my script to send messages to the team's chatroom.</p>
+					<a href="https://github.com/nickskitch/work" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors mt-4 inline-block">Learn More →</a>
+				</div>
+				
+				<!-- Problem 6 -->
+				<div class="glass-panel rounded-lg p-8 reveal">
+					<h3 class="text-2xl font-bold mb-4 text-teal-400">"Nick, we need you to trigger a jenkins build at a certain time each night. We don't have administration rights on this jenkins job."</h3>
+					<p class="text-gray-300 mb-4 font-semibold">solution:</p>
+					<p class="text-gray-300 leading-relaxed">Without administrator access to the jenkins job we are unable to use the 'build periodically' cron format job scheduling. Scheduled a this python script as a scheduled cron job to kick off a particular jenkins build.</p>
+					<a href="https://github.com/nickskitch/work" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors mt-4 inline-block">Learn More →</a>
+				</div>
+				
+				<!-- Problem 7 -->
+				<div class="glass-panel rounded-lg p-8 reveal">
+					<h3 class="text-2xl font-bold mb-4 text-teal-400">"Nick, sometimes after a certain deployment the version is not updated. Is there a way you can validate the deployment was successful before notifying QA the build is ready for testing"</h3>
+					<p class="text-gray-300 mb-4 font-semibold">solution:</p>
+					<p class="text-gray-300 leading-relaxed">python script that uses credentials in the http headers and returns the artifact details.</p>
+					<a href="https://github.com/nickskitch/work" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors mt-4 inline-block">Learn More →</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="bg-slate-800 border-t border-slate-700 py-8 mt-20">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+			<div class="mb-4">
+				<a href="mailto:nick@thebuildmaestro.com" class="hover:text-white">nick@thebuildmaestro.com</a>
+				<span class="mx-2">|</span>
+				<a href="tel:+16505495075" class="hover:text-white">(650) 549-5075</a>
+			</div>
+			<div class="mb-4">
+				<p>Remote • Previously San Francisco Bay Area</p>
+			</div>
+			<div class="flex justify-center space-x-4">
+				<a href="https://x.com/nsturnitin" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">Twitter</a>
+				<a href="https://www.linkedin.com/in/nicholas-s-06589199/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+			</div>
+			<p class="mt-4">&copy; {{.Year}} Nicholas Skitch. All rights reserved.</p>
+		</div>
+	</footer>
+
+	<!-- Animation System JS -->
+	<script src="/static/js/animations.js"></script>
+</body>
+</html>
+{{end}}
+

@@ -1,0 +1,201 @@
+{{define "article-display.html"}}
+{{block "extrahead" .}}
+	<meta name="description" content="{{.Article.Description}}">
+	<link rel="stylesheet" href="/static/css/codehilite.css">
+{{end}}
+
+{{block "content" .}}
+<div class="container mx-auto px-4 py-8">
+	<div class="mb-4">
+		<a href="{{urlFor "display_articles_listing"}}" class="inline-flex items-center text-blue-400 hover:text-blue-300">
+			<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+			</svg>
+			Back to articles
+		</a>
+	</div>
+
+	<div class="flex gap-8">
+		<!-- Main article content -->
+		<div class="flex-1">
+			<div class="bg-gray-800 rounded-lg p-6 mb-6">
+				<h1 class="text-4xl font-bold mb-4">{{.Article.Title}}</h1>
+				<p class="text-xl text-gray-300 italic mb-4">{{.Article.Description}}</p>
+				<div class="text-sm text-gray-400 space-y-2 mb-4">
+					<p><strong>Written on:</strong> {{.Article.WrittenOn}}</p>
+					<p><strong>Last updated:</strong> {{.Article.LastUpdated}}</p>
+					{{if .Article.Distributions}}
+					<p><strong>Distributions:</strong>
+						{{range $i, $distro := split .Article.Distributions " "}}
+							{{if $i}} {{end}}
+							{{$color := "bg-gray-600"}}
+							{{if hasPrefix $distro "RHEL"}}{{$color = "bg-red-600"}}{{end}}
+							{{if hasPrefix $distro "Cent"}}{{$color = "bg-blue-600"}}{{end}}
+							{{if hasPrefix $distro "Fedora"}}{{$color = "bg-blue-500"}}{{end}}
+							{{if hasPrefix $distro "Ubuntu"}}{{$color = "bg-orange-600"}}{{end}}
+							{{if hasPrefix $distro "SLES"}}{{$color = "bg-green-600"}}{{end}}
+							{{if hasPrefix $distro "AWS"}}{{$color = "bg-orange-600"}}{{end}}
+							<span class="inline-block {{$color}} text-white px-2 py-1 rounded text-xs">{{$distro}}</span>
+						{{end}}
+					</p>
+					{{end}}
+				</div>
+				<hr class="border-gray-700 my-6">
+				<div class="prose prose-invert prose-lg max-w-none article-content">
+					{{.Content}}
+				</div>
+			</div>
+
+			<!-- Disqus -->
+			<div id="disqus_thread"></div>
+			<script>
+				var disqus_config = function () {
+					this.page.url = "{{.ArticleURL}}";
+					this.page.identifier = "{{.ArticleID}}";
+				};
+				(function() {
+					var d = document, s = d.createElement('script');
+					s.src = '//thebuildmaestro.disqus.com/embed.js';
+					s.setAttribute('data-timestamp', +new Date());
+					(d.head || d.body).appendChild(s);
+				})();
+			</script>
+			<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+		</div>
+
+		<!-- Sidebar - Table of Contents -->
+		<div class="hidden lg:block w-64 flex-shrink-0">
+			<div class="bg-gray-800 rounded-lg p-4 sticky top-4 max-h-[90vh] overflow-y-auto">
+				<div class="font-semibold mb-4">Table of Contents</div>
+				<div id="toc" class="space-y-2 text-sm"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.article-content {
+		line-height: 1.75;
+	}
+	.article-content p {
+		margin-top: 1.25em;
+		margin-bottom: 1.25em;
+	}
+	.article-content p:first-child {
+		margin-top: 0;
+	}
+	.article-content h1 {
+		margin-top: 2em;
+		margin-bottom: 1em;
+		font-size: 2.25em;
+		font-weight: 800;
+		line-height: 1.2;
+	}
+	.article-content h1:first-child {
+		margin-top: 0;
+	}
+	.article-content h2 {
+		margin-top: 2em;
+		margin-bottom: 1em;
+		font-size: 1.5em;
+		font-weight: 700;
+		line-height: 1.3;
+	}
+	.article-content h3 {
+		margin-top: 1.5em;
+		margin-bottom: 0.75em;
+		font-size: 1.25em;
+		font-weight: 600;
+		line-height: 1.4;
+	}
+	.article-content h4 {
+		margin-top: 1.25em;
+		margin-bottom: 0.5em;
+		font-size: 1.125em;
+		font-weight: 600;
+	}
+	.article-content ul, .article-content ol {
+		margin-top: 1.25em;
+		margin-bottom: 1.25em;
+		padding-left: 1.625em;
+	}
+	.article-content li {
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+	}
+	.article-content img {
+		max-width: 100%;
+		height: auto;
+		margin-top: 2em;
+		margin-bottom: 2em;
+	}
+	.article-content pre {
+		background-color: #1f2937;
+		padding: 1rem;
+		border-radius: 0.5rem;
+		overflow-x: auto;
+		margin-top: 1.5em;
+		margin-bottom: 1.5em;
+	}
+	.article-content code {
+		background-color: #374151;
+		padding: 0.125rem 0.25rem;
+		border-radius: 0.25rem;
+		font-size: 0.875em;
+	}
+	.article-content pre code {
+		background-color: transparent;
+		padding: 0;
+	}
+	.article-content hr {
+		margin-top: 3em;
+		margin-bottom: 3em;
+		border-color: #374151;
+	}
+	.article-content blockquote {
+		margin-top: 1.5em;
+		margin-bottom: 1.5em;
+		padding-left: 1em;
+		border-left: 4px solid #4b5563;
+	}
+</style>
+
+<script>
+	// Generate Table of Contents
+	document.addEventListener('DOMContentLoaded', function() {
+		const articleContent = document.querySelector('.article-content');
+		const tocContainer = document.getElementById('toc');
+		
+		if (!articleContent || !tocContainer) return;
+
+		const headings = articleContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
+		if (headings.length === 0) return;
+
+		const tocList = document.createElement('ul');
+		tocList.className = 'space-y-1';
+
+		headings.forEach((heading, index) => {
+			// Ensure heading has an ID
+			if (!heading.id) {
+				heading.id = 'heading-' + index;
+			}
+
+			const level = parseInt(heading.tagName.charAt(1));
+			const listItem = document.createElement('li');
+			listItem.className = 'pl-' + ((level - 1) * 4);
+			
+			const link = document.createElement('a');
+			link.href = '#' + heading.id;
+			link.textContent = heading.textContent;
+			link.className = 'text-gray-300 hover:text-white transition-colors';
+			
+			listItem.appendChild(link);
+			tocList.appendChild(listItem);
+		});
+
+		tocContainer.appendChild(tocList);
+	});
+</script>
+{{end}}
+{{end}}
+

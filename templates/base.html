@@ -1,0 +1,91 @@
+{{define "base"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#313841">
+
+	<!-- Tailwind CSS -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	
+	<!-- HTMX -->
+	<script src="https://unpkg.com/htmx.org@2"></script>
+
+	<!-- Animation System CSS -->
+	<link rel="stylesheet" href="/static/css/animations.css">
+	
+	<!-- Custom styles -->
+	<style>
+		/* Code highlighting styles will be injected here */
+	</style>
+	{{block "extrahead" .}}{{end}}
+
+	<title>{{if .Title}}{{.Title}} - {{end}}niski84</title>
+</head>
+<body class="bg-gray-900 text-gray-100">
+	<div class="flex min-h-screen">
+		<!-- Sidebar Menu -->
+		<div id="menu" class="w-64 bg-gray-800 fixed h-full overflow-y-auto">
+			<div class="p-4">
+				<!-- Menu toggle for mobile -->
+				<button id="menuLink" class="md:hidden mb-4 text-gray-300 hover:text-white">
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg>
+				</button>
+
+				<nav class="space-y-2">
+					<div class="text-center mb-6">
+						<a href="{{urlFor "render_homepage_redirect"}}">
+							<img class="rounded-full mx-auto mb-4" alt="Nicholas Skitch" height="100px" width="100px" src="/static/images/profile.jpg">
+						</a>
+						<div class="text-xl font-semibold">niski84</div>
+					</div>
+
+					<a href="{{urlFor "display_articles_listing"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Articles"}}bg-gray-700{{else}}hover:bg-gray-700{{end}}">
+						<span class="mr-2">📄</span> Articles
+					</a>
+					<a href="{{urlFor "display_code_projects_listing"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Code"}}bg-gray-700{{else}}hover:bg-gray-700{{end}}">
+						<span class="mr-2">💻</span> Code
+					</a>
+					<a href="{{urlFor "display_photo_gallery"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Photos"}}bg-gray-700{{else}}hover:bg-gray-700{{end}}">
+						<span class="mr-2">📷</span> Photos
+					</a>
+					<a href="https://www.linkedin.com/in/nicholas-s-06589199/" target="_blank" class="block px-4 py-2 rounded hover:bg-gray-700">
+						<span class="mr-2">👤</span> LinkedIn
+					</a>
+					<a href="{{urlFor "render_contact_page"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Contact"}}bg-gray-700{{else}}hover:bg-gray-700{{end}}">
+						<span class="mr-2">✉️</span> Contact
+					</a>
+				</nav>
+
+				<div class="mt-auto pt-8 text-center">
+					<a href="https://go.dev/" target="_blank">
+						<img alt="powered by Go" src="/static/images/logo_bottom.png" class="mx-auto opacity-50 hover:opacity-100">
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Main Content -->
+		<div class="flex-1 ml-64">
+			{{block "content" .}}{{end}}
+		</div>
+	</div>
+
+	<script>
+		// Mobile menu toggle
+		document.getElementById('menuLink')?.addEventListener('click', function() {
+			const menu = document.getElementById('menu');
+			menu.classList.toggle('hidden');
+		});
+	</script>
+	
+	<!-- Animation System JS -->
+	<script src="/static/js/animations.js"></script>
+</body>
+</html>
+{{end}}
+

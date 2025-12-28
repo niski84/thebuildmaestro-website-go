@@ -1,0 +1,10 @@
+[metadata]
+title: From InstallShield Battles to Go and Postgres: A Tour of My Old War Stories
+author: Nicholas Skitch
+written_on: 2025-12-22
+last_updated: 2025-12-22
+distributions: 
+description: A quick recap of the older Build Maestro posts that still matter, plus the problems that shaped how I build systems today.
+url: /articles/installshield_to_go_tour/
+id: installshield_to_go_tour
+

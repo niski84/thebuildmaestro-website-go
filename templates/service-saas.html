@@ -1,0 +1,203 @@
+{{define "service-saas.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#0F172A">
+
+	<!-- Tailwind CSS -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	
+	<!-- HTMX -->
+	<script src="https://unpkg.com/htmx.org@2"></script>
+	
+	<!-- Animation System CSS -->
+	<link rel="stylesheet" href="/static/css/animations.css">
+
+	<title>SaaS & Platform Engineering | Nicholas Skitch</title>
+	
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+		
+		* {
+			font-family: 'Inter', sans-serif;
+		}
+		
+		/* Constrained content width for readability */
+		.content-constrained {
+			max-width: 800px;
+			margin: 0 auto;
+		}
+		
+		/* Section spacing */
+		.content-section {
+			margin-bottom: 4rem;
+		}
+		
+		/* Subtle divider */
+		.section-divider {
+			height: 1px;
+			background: linear-gradient(to right, transparent, rgba(71, 85, 105, 0.5), transparent);
+			margin: 3rem 0;
+		}
+	</style>
+</head>
+<body class="bg-slate-900 text-gray-100 antialiased">
+	<!-- Top Bar -->
+	<div class="bg-slate-800 border-b border-slate-700 py-2">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex justify-between items-center text-sm">
+				<div class="flex items-center space-x-4">
+					<a href="mailto:nick@thebuildmaestro.com" class="text-gray-300 hover:text-white transition-colors">nick@thebuildmaestro.com</a>
+					<span class="text-slate-600">|</span>
+					<a href="tel:+16505495075" class="text-gray-300 hover:text-white transition-colors">(650) 549-5075</a>
+				</div>
+				<div class="flex items-center space-x-4">
+					<a href="https://x.com/nsturnitin" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Twitter">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+					</a>
+					<a href="https://www.linkedin.com/in/nicholas-s-06589199/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="LinkedIn">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main Navigation -->
+	<nav class="sticky top-0 left-0 right-0 z-50 bg-slate-900 border-b border-slate-700">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex justify-between items-center h-16">
+				<div class="text-xl font-bold text-white">NICHOLAS SKITCH</div>
+				<div class="hidden md:flex space-x-8">
+					<a href="/" class="text-gray-300 hover:text-white transition-colors font-medium">Home</a>
+					<a href="/articles/" class="text-gray-300 hover:text-white transition-colors font-medium">Blog</a>
+					<a href="/about/" class="text-gray-300 hover:text-white transition-colors font-medium">About Me</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Breadcrumb -->
+	<nav class="bg-slate-800 border-b border-slate-700 py-3">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex items-center space-x-2 text-sm text-gray-400">
+				<a href="/" class="hover:text-white transition-colors">Home</a>
+				<span>/</span>
+				<a href="/#services" class="hover:text-white transition-colors">Services</a>
+				<span>/</span>
+				<span class="text-gray-300">SaaS & Platform Engineering</span>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Hero Section -->
+	<section class="py-16 bg-slate-800">
+		<div class="content-constrained px-4 sm:px-6 lg:px-8">
+			<h1 class="text-5xl font-bold mb-6 reveal">SaaS & Platform Engineering</h1>
+			<p class="text-xl text-gray-300 leading-relaxed reveal">
+				Building multi-tenant platforms and SaaS systems that scale reliably, integrate cleanly, and operate predictably under real production conditions.
+			</p>
+		</div>
+	</section>
+
+	<!-- Main Content -->
+	<main class="content-constrained px-4 sm:px-6 lg:px-8 py-16">
+		<!-- What I Build -->
+		<section class="content-section reveal">
+			<h2 class="text-3xl font-bold mb-6 text-teal-400">What I build</h2>
+			<div class="space-y-4 text-lg text-gray-300 leading-relaxed">
+				<p>
+					I design and build SaaS platforms and multi-tenant systems from the ground up. This includes the full application stack—backend APIs, data models, authentication and authorization, tenant isolation, and the frontend interfaces that users interact with.
+				</p>
+				<p>
+					The work emphasizes reliability and operability. Systems need to handle growth, integrate with third-party services, maintain data consistency, and provide clear operational visibility. I focus on building platforms that can scale without constant intervention.
+				</p>
+				<p>
+					This includes work on authentication systems, API design, database schema design for multi-tenancy, background job processing, webhook integrations, and the operational tooling needed to run these systems in production.
+				</p>
+			</div>
+		</section>
+
+		<div class="section-divider"></div>
+
+		<!-- How I Approach It -->
+		<section class="content-section reveal">
+			<h2 class="text-3xl font-bold mb-6 text-teal-400">How I approach it</h2>
+			<div class="space-y-4 text-lg text-gray-300 leading-relaxed">
+				<p>
+					I prioritize clarity and correctness over cleverness. Code should be readable, testable, and maintainable. Architecture decisions are made with operational reality in mind—what happens when this fails, how do we debug it, how do we scale it.
+				</p>
+				<p>
+					I work primarily in Go for backend systems, with strong experience in Python. For frontend work, I use modern, lightweight approaches like HTMX and Tailwind CSS to build interfaces that are fast, accessible, and maintainable.
+				</p>
+				<p>
+					The emphasis is on building systems that work reliably in production, not on using the latest framework or following trends. I focus on solving real problems with proven approaches, while staying open to better tools when they genuinely improve outcomes.
+				</p>
+			</div>
+		</section>
+
+		<div class="section-divider"></div>
+
+		<!-- Example Project -->
+		<section class="content-section reveal">
+			<h2 class="text-3xl font-bold mb-6 text-teal-400">Example project</h2>
+			<div class="bg-slate-800 rounded-lg p-8 border border-slate-700">
+				<h3 class="text-2xl font-semibold mb-4 text-gray-200">Static Site Generator</h3>
+				<p class="text-lg text-gray-300 leading-relaxed mb-6">
+					This website itself is built with a custom static site generator written in Go. It demonstrates full-stack development practices: content management, template rendering, build automation, and deployment workflows. The generator processes Markdown content, applies templates, and produces a complete static site ready for deployment.
+				</p>
+				<p class="text-lg text-gray-300 leading-relaxed mb-6">
+					The project shows how I approach building tools that solve real problems: clear structure, minimal dependencies, and a focus on maintainability. It's a practical example of building complete systems rather than just writing code.
+				</p>
+				<a 
+					href="https://github.com/niski84/thebuildmaestro-website-go" 
+					target="_blank" 
+					rel="noopener noreferrer"
+					class="inline-flex items-center space-x-2 px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-lg transition-colors"
+				>
+					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+						<path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.197 22 16.425 22 12.017 22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+					</svg>
+					<span>View on GitHub</span>
+				</a>
+			</div>
+		</section>
+
+		<div class="section-divider"></div>
+
+		<!-- Back to Services -->
+		<section class="content-section text-center reveal">
+			<a href="/#services" class="inline-block px-6 py-3 text-teal-400 hover:text-teal-300 transition-colors font-medium">
+				← Back to Services
+			</a>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="bg-slate-800 border-t border-slate-700 py-8 mt-20">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+			<div class="mb-4">
+				<a href="mailto:nick@thebuildmaestro.com" class="hover:text-white">nick@thebuildmaestro.com</a>
+				<span class="mx-2">|</span>
+				<a href="tel:+16505495075" class="hover:text-white">(650) 549-5075</a>
+			</div>
+			<div class="mb-4">
+				<p>Remote • Previously San Francisco Bay Area</p>
+			</div>
+			<div class="flex justify-center space-x-4">
+				<a href="https://x.com/nsturnitin" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">Twitter</a>
+				<a href="https://www.linkedin.com/in/nicholas-s-06589199/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+			</div>
+			<p class="mt-4">&copy; {{.Year}} Nicholas Skitch. All rights reserved.</p>
+		</div>
+	</footer>
+
+	<!-- Animation System JS -->
+	<script src="/static/js/animations.js"></script>
+</body>
+</html>
+{{end}}
+

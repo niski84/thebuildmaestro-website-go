@@ -1,0 +1,79 @@
+{{define "code.html"}}
+{{block "content" .}}
+<div class="container mx-auto px-4 py-8">
+	<div class="mb-8">
+		<h2 class="text-3xl font-bold mb-4">Code</h2>
+		<p>I enjoy coding. Most of my work is day to day contributing to work repos, but here's some stuff.</p>
+	</div>
+
+	<div class="bg-gray-800 rounded-lg overflow-hidden">
+		<div class="bg-gray-700 px-6 py-4">
+			<h4 class="text-xl font-semibold inline">Scripts/Code</h4>
+			<span class="ml-4 text-sm text-gray-400">
+				Sort by <button class="sort-btn text-blue-400 hover:text-blue-300 underline" data-sort="name">Name</button> or <button class="sort-btn text-blue-400 hover:text-blue-300 underline" data-sort="date">Date</button>
+			</span>
+		</div>
+		<div class="list-text-content">
+			{{range $id, $details := .Metadata}}
+			{{$url := $details.URL}}
+			{{$target := "_blank"}}
+			{{if not $url}}
+				{{$url = urlFor "display_code_projects_listing" $id}}
+				{{$target = "_self"}}
+			{{end}}
+			<a href="{{$url}}" target="{{$target}}" class="block px-6 py-4 border-b border-gray-700 hover:bg-gray-700 transition-colors" data-updated="{{$details.LastUpdated}}" data-name="{{$details.Title}}">
+				<h4 class="text-lg font-semibold mb-2">{{$details.Title}}</h4>
+				<p class="text-gray-300">
+					{{$details.Description}}
+					{{if $details.LastUpdated}}
+						<span class="text-gray-500 text-sm italic ml-2">Last updated: {{$details.LastUpdated}}</span>
+					{{end}}
+				</p>
+			</a>
+			{{end}}
+		</div>
+	</div>
+</div>
+
+<script>
+	// Simple sorting implementation
+	document.addEventListener('DOMContentLoaded', function() {
+		const sortButtons = document.querySelectorAll('.sort-btn');
+		const listContainer = document.querySelector('.list-text-content');
+		let currentSort = { name: false, date: false };
+
+		sortButtons.forEach(btn => {
+			btn.addEventListener('click', function() {
+				const sortType = this.dataset.sort;
+				const items = Array.from(listContainer.children);
+				
+				items.sort((a, b) => {
+					if (sortType === 'name') {
+						const nameA = a.dataset.name.toLowerCase();
+						const nameB = b.dataset.name.toLowerCase();
+						return currentSort.name ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+					} else { // date
+						const dateA = a.dataset.updated || '';
+						const dateB = b.dataset.updated || '';
+						return currentSort.date ? dateA.localeCompare(dateB) : dateB.localeCompare(dateA);
+					}
+				});
+
+				items.forEach(item => listContainer.appendChild(item));
+				currentSort[sortType] = !currentSort[sortType];
+			});
+		});
+
+		// Initial sort by name
+		const items = Array.from(listContainer.children);
+		items.sort((a, b) => {
+			const nameA = a.dataset.name.toLowerCase();
+			const nameB = b.dataset.name.toLowerCase();
+			return nameA.localeCompare(nameB);
+		});
+		items.forEach(item => listContainer.appendChild(item));
+	});
+</script>
+{{end}}
+{{end}}
+

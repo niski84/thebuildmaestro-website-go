@@ -1,0 +1,160 @@
+/* ============================================
+   Lightweight Animation System
+   ============================================ */
+
+/* Global effect 1: Scroll reveal + stagger */
+.reveal {
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 450ms ease-out, transform 450ms ease-out;
+}
+
+.reveal.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Stagger delays for groups */
+.stagger-group .reveal:nth-child(1) { transition-delay: 0ms; }
+.stagger-group .reveal:nth-child(2) { transition-delay: 50ms; }
+.stagger-group .reveal:nth-child(3) { transition-delay: 100ms; }
+.stagger-group .reveal:nth-child(4) { transition-delay: 150ms; }
+.stagger-group .reveal:nth-child(5) { transition-delay: 200ms; }
+.stagger-group .reveal:nth-child(6) { transition-delay: 250ms; }
+.stagger-group .reveal:nth-child(7) { transition-delay: 300ms; }
+.stagger-group .reveal:nth-child(8) { transition-delay: 350ms; }
+.stagger-group .reveal:nth-child(n+9) { transition-delay: 400ms; }
+
+/* Global effect 2: Parallax section */
+.parallax-section {
+	position: relative;
+	overflow: hidden;
+}
+
+.parallax-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 150%; /* Taller to allow for parallax scrolling */
+	background-size: cover;
+	background-position: center;
+	will-change: transform;
+	z-index: 1;
+}
+
+/* Layer 1 - slowest (furthest back) */
+.parallax-layer-1 {
+	z-index: 1;
+}
+
+/* Layer 2 - medium speed, starts lower and appears in gap */
+.parallax-layer-2 {
+	z-index: 2;
+	/* Start below viewport, will move up into gap as we scroll */
+	transform: translateY(100vh);
+}
+
+.parallax-content {
+	position: relative;
+	z-index: 2;
+}
+
+/* Global effect 3: Glass foreground panels */
+.glass-panel {
+	background: rgba(44, 62, 80, 0.75);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 8px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-panel-light {
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 8px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradient scrim for readability */
+.gradient-scrim {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.3) 0%,
+		rgba(0, 0, 0, 0.1) 50%,
+		rgba(0, 0, 0, 0.3) 100%
+	);
+	pointer-events: none;
+	z-index: 1;
+}
+
+/* Global effect 4: Card hover lift (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+	.card-lift {
+		transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+	}
+	
+	.card-lift:hover {
+		transform: translateY(-6px);
+		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+	}
+	
+	.card-lift-hover-border:hover {
+		border-color: rgba(78, 205, 196, 0.5);
+	}
+}
+
+/* Global effect 5: Hero-only subtle accent */
+.hero-accent-drift {
+	animation: subtle-drift 45s ease-in-out infinite;
+}
+
+@keyframes subtle-drift {
+	0%, 100% {
+		transform: translateX(0) translateY(0);
+	}
+	25% {
+		transform: translateX(2%) translateY(1%);
+	}
+	50% {
+		transform: translateX(0) translateY(2%);
+	}
+	75% {
+		transform: translateX(-2%) translateY(1%);
+	}
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+	.reveal {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+	
+	.parallax-bg {
+		transform: none !important;
+		will-change: auto;
+	}
+	
+	.hero-accent-drift {
+		animation: none;
+	}
+	
+	.card-lift {
+		transition: none;
+	}
+	
+	.card-lift:hover {
+		transform: none;
+	}
+}
+

@@ -1,0 +1,9 @@
+[metadata]
+title: From Flask to Go: Rewriting thebuildmaestro.com
+author: Nicholas Skitch
+written_on: 2025-12-27
+last_updated: 2025-12-27
+description: The story of migrating thebuildmaestro.com from Python/Flask to a Go-based static site generator, keeping the same content-first philosophy but with better performance and simpler deployment.
+url: /articles/flask_to_go_migration/
+id: flask_to_go_migration
+

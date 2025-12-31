@@ -209,6 +209,14 @@
 			font-size: 1rem;
 			line-height: 1.75;
 			color: #D1D5DB;
+		}
+		
+		.section-body strong {
+			font-weight: 700;
+			color: #E0E0E0;
+			background: linear-gradient(135deg, rgba(78, 205, 196, 0.15) 0%, rgba(78, 205, 196, 0.05) 100%);
+			padding: 0.1em 0.2em;
+			border-radius: 3px;
 			max-width: 65ch;
 		}
 		
@@ -297,9 +305,21 @@
 				<!-- Right Column: Subtitle + Body -->
 				<div>
 					<h2 class="section-subtitle">Discovering my calling</h2>
-					<p class="section-body">
-						Not just some warm body sitting at a desk collecting a paycheck. No, this is a passion of mine. Computers and specifically automation has always been a hobby of mine since a young age. Here's me pictured in the late 80s on the family 8088 with a 1200 baud modem. I loved calling into BBS's to trade files and play door games and chat, heck years later I'd actually be a SysOp running my own BBS. It's this same passion for computers that allowed me to become a Unix System Administrator while attending highschool and be able to have fun with IBM RS/6000 and Sun Solaris servers. Hearing the hum of the servers, buzzing of the fluorescent ballasts, and the clicking of the keyboards made me realize: I've found my calling.
-					</p>
+					<div class="section-body">
+						<p>Not just some warm body sitting at a desk collecting a paycheck. Computers, and specifically automation, have been a passion of mine since a young age. Here's me pictured in the late 80s on the family 8088 with a 1200-baud modem. I spent nights dialing into BBSes to trade files, play door games, and chat. Years later, I became a SysOp running my own board.</p>
+						
+						<p>That curiosity carried forward. While still in high school, I was already working as a Unix system administrator, getting hands-on with IBM RS/6000 and Sun Solaris servers. Hearing the hum of the machines, the buzz of fluorescent ballasts, and the steady rhythm of keyboards was the moment I realized <strong>I had found my calling</strong>. I wasn't just interested in computers, I was interested in <strong>making systems work reliably, especially when humans were no longer in the loop</strong>.</p>
+						
+						<p><strong>That instinct to remove friction and replace it with repeatable automation has shaped my career ever since.</strong></p>
+						
+						<p>Over the past 15+ years, I've focused on turning fragile, manual deployment processes into durable systems that teams can trust. At Moody's Analytics, I designed and built CLDeploy, a multithreaded Go-based CLI that installs and upgrades Moody's CreditLens platform both on-prem and in AWS. What began as a consultancy project grew into core infrastructure now used to deploy and maintain environments for <strong>over 175 banks and fintech customers worldwide</strong>.</p>
+						
+						<p>My work has centered on the hard parts teams tend to avoid: automating PostgreSQL backup and restore workflows with selective object control, orchestrating AWS resources directly via the Go SDK, and building deployment pipelines that are auditable, repeatable, and resilient under pressure. <strong>These systems are not demos or internal toys. They are production tools relied on by CloudOps teams and customer-facing engineers in regulated financial environments.</strong></p>
+						
+						<p>Along the way, I've led migrations from single-tenant to shared RDS architectures, built containerized onboarding services integrated with secure MFT platforms, and mentored engineers in idiomatic Go and systems-level thinking. Whether working independently or embedded with enterprise teams, my focus is always the same: <strong>simplify complex systems without hiding their reality</strong>, and leave behind tooling that makes the next engineer's job easier, not harder.</p>
+						
+						<p>At this point in my career, I'm most effective where deep technical context, automation, and long-term ownership intersect. <strong>I care about how systems behave at 2 a.m., how they recover from failure</strong>, and how quickly a team can reason about what's happening when something goes wrong. <strong>That mindset started with a modem and a BBS, and it's the same mindset I bring to modern cloud platforms today.</strong></p>
+					</div>
 				</div>
 			</div>
 		</div>

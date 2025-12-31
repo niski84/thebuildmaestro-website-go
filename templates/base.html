@@ -24,10 +24,10 @@
 
 	<title>{{if .Title}}{{.Title}} - {{end}}niski84</title>
 </head>
-<body class="bg-gray-900 text-gray-100">
+<body class="bg-slate-900 text-gray-100">
 	<div class="flex min-h-screen">
 		<!-- Sidebar Menu -->
-		<div id="menu" class="w-64 bg-gray-800 fixed h-full overflow-y-auto">
+		<div id="menu" class="w-64 bg-slate-800 fixed h-full overflow-y-auto">
 			<div class="p-4">
 				<!-- Menu toggle for mobile -->
 				<button id="menuLink" class="md:hidden mb-4 text-gray-300 hover:text-white">
@@ -39,26 +39,26 @@
 				<nav class="space-y-2">
 					<div class="text-center mb-6">
 						<a href="{{urlFor "render_homepage_redirect"}}" class="block">
-							<div class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-4 rounded-full overflow-hidden border-2 border-gray-600 shadow-lg">
+							<div class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-4 rounded-full overflow-hidden border-2 border-slate-600 shadow-lg">
 								<img class="w-full h-full object-cover object-center" alt="Nicholas Skitch" src="/static/images/profile.jpg">
 							</div>
 						</a>
 						<div class="text-xl font-semibold">niski84</div>
 					</div>
 
-					<a href="{{urlFor "display_articles_listing"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Articles"}}bg-gray-700{{else}}hover:bg-gray-700{{end}}">
+					<a href="{{urlFor "display_articles_listing"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Articles"}}bg-slate-700{{else}}hover:bg-slate-700{{end}}">
 						<span class="mr-2">📄</span> Articles
 					</a>
-					<a href="{{urlFor "display_code_projects_listing"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Code"}}bg-gray-700{{else}}hover:bg-gray-700{{end}}">
+					<a href="{{urlFor "display_code_projects_listing"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Code"}}bg-slate-700{{else}}hover:bg-slate-700{{end}}">
 						<span class="mr-2">💻</span> Code
 					</a>
-					<a href="{{urlFor "display_photo_gallery"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Photos"}}bg-gray-700{{else}}hover:bg-gray-700{{end}}">
+					<a href="{{urlFor "display_photo_gallery"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Photos"}}bg-slate-700{{else}}hover:bg-slate-700{{end}}">
 						<span class="mr-2">📷</span> Photos
 					</a>
-					<a href="https://www.linkedin.com/in/nicholas-s-06589199/" target="_blank" class="block px-4 py-2 rounded hover:bg-gray-700">
+					<a href="https://www.linkedin.com/in/nicholas-s-06589199/" target="_blank" class="block px-4 py-2 rounded hover:bg-slate-700">
 						<span class="mr-2">👤</span> LinkedIn
 					</a>
-					<a href="{{urlFor "render_contact_page"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Contact"}}bg-gray-700{{else}}hover:bg-gray-700{{end}}">
+					<a href="{{urlFor "render_contact_page"}}" class="block px-4 py-2 rounded {{if eq .ActivePage "Contact"}}bg-slate-700{{else}}hover:bg-slate-700{{end}}">
 						<span class="mr-2">✉️</span> Contact
 					</a>
 				</nav>

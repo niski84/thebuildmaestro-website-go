@@ -10,3 +10,4 @@ echo "Generating static site..."
 
 echo "Build complete! Output in public/ directory"
 
+

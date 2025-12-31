@@ -135,12 +135,76 @@
 	}
 	
 	// ============================================
+	// Hero Content Fade-in on Background Image Load
+	// ============================================
+	
+	function initHeroFadeIn() {
+		const heroContent = document.getElementById('heroContent');
+		if (!heroContent) return;
+		
+		// Check for reduced motion preference
+		if (prefersReducedMotion) {
+			// If reduced motion, just show content immediately
+			heroContent.classList.add('fade-in');
+			return;
+		}
+		
+		// Find the hero background image
+		const heroBgLayer = document.querySelector('.hero-bg-layer-1');
+		if (!heroBgLayer) {
+			// Fallback: show content after a delay if no background found
+			setTimeout(() => {
+				heroContent.classList.add('fade-in');
+			}, 5000);
+			return;
+		}
+		
+		// Get the background image URL from computed styles
+		const bgImage = window.getComputedStyle(heroBgLayer).backgroundImage;
+		const imageUrl = bgImage.match(/url\(['"]?([^'"]+)['"]?\)/);
+		
+		if (!imageUrl || !imageUrl[1]) {
+			// Fallback: show content after a delay
+			setTimeout(() => {
+				heroContent.classList.add('fade-in');
+			}, 5000);
+			return;
+		}
+		
+		// Create an image element to detect when it's loaded
+		const img = new Image();
+		img.src = imageUrl[1];
+		
+		// Wait for image to load
+		if (img.complete) {
+			// Image already loaded
+			startFadeIn();
+		} else {
+			img.onload = startFadeIn;
+			img.onerror = () => {
+				// If image fails to load, show content after delay anyway
+				setTimeout(() => {
+					heroContent.classList.add('fade-in');
+				}, 5000);
+			};
+		}
+		
+		function startFadeIn() {
+			// Wait 5 seconds after image loads, then fade in over 5 seconds
+			setTimeout(() => {
+				heroContent.classList.add('fade-in');
+			}, 5000);
+		}
+	}
+	
+	// ============================================
 	// Initialize everything
 	// ============================================
 	
 	function init() {
 		initReveals();
 		initParallax();
+		initHeroFadeIn();
 	}
 	
 	// Wait for DOM to be ready

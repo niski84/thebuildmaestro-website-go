@@ -94,6 +94,8 @@ func NewTemplateManager(templateDir string) (*TemplateManager, error) {
 		"about.html",
 		"leanlabs.html",
 		"service-saas.html",
+		"moodys.html",
+		"work-with-me.html",
 	}
 
 	// Parse base + each child template separately to avoid block conflicts

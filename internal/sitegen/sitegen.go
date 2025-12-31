@@ -60,6 +60,16 @@ func GenerateSite(config Config) error {
 		return fmt.Errorf("failed to generate SaaS service page: %w", err)
 	}
 
+	// Generate Moody's Analytics page
+	if err := generateMoodysPage(config, tm); err != nil {
+		return fmt.Errorf("failed to generate Moody's Analytics page: %w", err)
+	}
+
+	// Generate Work with me page
+	if err := generateWorkWithMePage(config, tm); err != nil {
+		return fmt.Errorf("failed to generate Work with me page: %w", err)
+	}
+
 	// Filter articles to exclude future-dated posts
 	publishedArticles := FilterPublishedArticles(registry["articles"])
 
@@ -254,6 +264,60 @@ func generateServiceSaasPage(config Config, tm *TemplateManager) error {
 
 	if err := os.WriteFile(outputPath, []byte(html), 0644); err != nil {
 		return fmt.Errorf("failed to write service-saas page: %w", err)
+	}
+
+	return nil
+}
+
+// generateMoodysPage generates the Moody's Analytics page
+func generateMoodysPage(config Config, tm *TemplateManager) error {
+	log.Printf("generateMoodysPage")
+
+	outputPath := filepath.Join(config.OutputDir, "moodys", "index.html")
+	if err := os.MkdirAll(filepath.Dir(outputPath), 0755); err != nil {
+		return fmt.Errorf("failed to create moodys directory: %w", err)
+	}
+
+	data := TemplateData{
+		Title:           "Moody's Analytics | Nicholas Skitch",
+		CanonicalDomain: config.CanonicalDomain,
+		Year:            time.Now().Year(),
+	}
+
+	html, err := tm.RenderTemplate("moodys.html", data)
+	if err != nil {
+		return fmt.Errorf("failed to render moodys template: %w", err)
+	}
+
+	if err := os.WriteFile(outputPath, []byte(html), 0644); err != nil {
+		return fmt.Errorf("failed to write moodys page: %w", err)
+	}
+
+	return nil
+}
+
+// generateWorkWithMePage generates the Work with me page
+func generateWorkWithMePage(config Config, tm *TemplateManager) error {
+	log.Printf("generateWorkWithMePage")
+
+	outputPath := filepath.Join(config.OutputDir, "work-with-me", "index.html")
+	if err := os.MkdirAll(filepath.Dir(outputPath), 0755); err != nil {
+		return fmt.Errorf("failed to create work-with-me directory: %w", err)
+	}
+
+	data := TemplateData{
+		Title:           "Work with me | Nicholas Skitch",
+		CanonicalDomain: config.CanonicalDomain,
+		Year:            time.Now().Year(),
+	}
+
+	html, err := tm.RenderTemplate("work-with-me.html", data)
+	if err != nil {
+		return fmt.Errorf("failed to render work-with-me template: %w", err)
+	}
+
+	if err := os.WriteFile(outputPath, []byte(html), 0644); err != nil {
+		return fmt.Errorf("failed to write work-with-me page: %w", err)
 	}
 
 	return nil

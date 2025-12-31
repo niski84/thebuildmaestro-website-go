@@ -169,13 +169,14 @@
 		<!-- Gradient scrim for readability - lighter at top to show face -->
 		<div class="gradient-scrim hero-scrim"></div>
 		<!-- Content with glass panel -->
-		<div class="parallax-content min-h-screen flex items-center justify-center relative pt-48 md:pt-56 lg:pt-64">
+		<div class="parallax-content min-h-screen flex items-center justify-center relative pt-80 md:pt-88 lg:pt-96">
 			<div class="text-center px-4">
-				<div class="glass-panel-light px-8 py-12 rounded-lg reveal mb-6">
-					<h1 class="text-6xl md:text-8xl lg:text-9xl font-black text-amber-50 mb-0 leading-tight">
+				<div class="glass-panel-light px-8 py-12 rounded-lg reveal mb-6 hero-content-fade" id="heroContent">
+					<h1 class="text-6xl md:text-8xl lg:text-9xl font-black text-amber-50 mb-6 leading-tight">
 						<span class="block">the Build</span>
 						<span class="block">Maestro</span>
 					</h1>
+					<img src="/static/images/buildmaestro.png" alt="the Build Maestro" class="hero-logo-simple">
 				</div>
 				<div class="glass-panel-light px-8 py-6 rounded-lg reveal max-w-3xl mx-auto">
 					<p class="text-lg md:text-xl text-gray-100 leading-relaxed mb-4">
@@ -254,7 +255,7 @@
 		<div class="parallax-bg" style="background-image: url('/static/images/profile2.jpg');" data-speed="0.25"></div>
 		<div class="gradient-scrim"></div>
 		<div class="parallax-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="glass-panel px-8 py-12 rounded-lg">
+			<div class="glass-panel-services px-8 py-12 rounded-lg">
 				<h2 class="text-4xl font-bold text-center mb-4 reveal">SERVICES & EXPERTISE</h2>
 				<p class="text-center text-gray-300 mb-12 reveal">What I build and how I solve problems</p>
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-group">
@@ -328,12 +329,23 @@
 			<p class="text-center text-gray-400 mb-12 reveal">Contracting also full time inc.</p>
 			
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-group">
+				<!-- Moody's Analytics -->
+				<div class="card-lift card-lift-hover-border rounded-lg overflow-hidden reveal bg-slate-800/90 backdrop-blur-sm border border-slate-700">
+					<img src="/static/images/moodys.png" alt="Moody's Analytics" class="w-full h-48 object-cover">
+					<div class="p-6">
+						<h3 class="text-2xl font-bold mb-2">Moody's Analytics</h3>
+						<p class="text-gray-400 mb-4">Large-scale cloud automation supporting a SaaS platform used by financial institutions worldwide.</p>
+						<a href="/moodys/" class="text-teal-400 hover:text-teal-300 transition-colors">Learn More →</a>
+					</div>
+				</div>
+				
 				<!-- GE Digital -->
 				<div class="card-lift card-lift-hover-border rounded-lg overflow-hidden reveal bg-slate-800/90 backdrop-blur-sm border border-slate-700">
 					<img src="/static/images/companies/gepredix.png" alt="GE Digital" class="w-full h-48 object-cover">
 					<div class="p-6">
 						<h3 class="text-2xl font-bold mb-2">GE Digital</h3>
 						<p class="text-gray-400 mb-4">AWS Cost Savings</p>
+						<a href="https://github.com/niski84/aws-cost-optimization" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors">Learn More →</a>
 					</div>
 				</div>
 				
@@ -361,7 +373,7 @@
 					<img src="/static/images/companies/good.png" alt="GOOD Technology" class="w-full h-48 object-cover">
 					<div class="p-6">
 						<h3 class="text-2xl font-bold mb-2">GOOD Technology</h3>
-						<p class="text-gray-400 mb-4">Brought on as a Sr. Packager extending their software installer to support a variety of functions such as: customer db upgrades, supporting master/slave installations within the same subnet.</p>
+						<p class="text-gray-400 mb-4">Brought on as a Sr. Packager extending their software installer to support customer database upgrades and coordinated master/slave deployments within constrained network environments.</p>
 					</div>
 				</div>
 				
@@ -418,6 +430,9 @@
 	<section id="contact" class="bg-slate-800 py-20">
 		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 			<h2 class="text-3xl font-semibold text-center mb-6 reveal">Interested in discussing a role or contract opportunity?</h2>
+			<p class="text-center text-gray-400 mb-6 text-sm">
+				Considering a contract or consulting engagement? <a href="/work-with-me/" class="text-teal-400 hover:text-teal-300 transition-colors">→ Work with me</a>
+			</p>
 			<div class="text-center space-y-4 mb-8 reveal">
 				<p class="text-lg text-gray-300">
 					<a href="mailto:nick@thebuildmaestro.com" class="text-teal-400 hover:text-teal-300 transition-colors font-medium">nick@thebuildmaestro.com</a>
@@ -429,8 +444,29 @@
 					<a href="https://stackoverflow.com/users/4192486/buildmaestro" target="_blank" rel="noopener noreferrer" class="text-teal-400 hover:text-teal-300 transition-colors font-medium">Stack Overflow</a>
 				</p>
 			</div>
-			<div class="text-center text-gray-400 text-sm">
-				<p>Remote • Previously San Francisco Bay Area</p>
+		</div>
+	</section>
+
+	<!-- About This Site -->
+	<section class="py-16 bg-slate-800/50">
+		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="glass-panel-about px-8 py-12 rounded-lg reveal">
+				<h2 class="text-3xl font-bold mb-6 text-gray-100">About this site</h2>
+				<div class="text-lg leading-relaxed text-gray-300 space-y-4">
+					<p>This site itself is a small example of how I work. It's bespoke, designed and built by me end to end, and intentionally kept simple and inspectable. I treat it the same way I treat production systems: clarity over cleverness, explicit behavior, and long-term maintainability.</p>
+					<p>If you're curious about the technical decisions behind it, I wrote about migrating it from Flask to Go here.</p>
+					<p>
+						<a href="/articles/flask_to_go_migration/" class="text-teal-400 hover:text-teal-300 transition-colors font-medium inline-flex items-center">
+							→ Read: Migrating this site from Flask to Go
+						</a>
+					</p>
+				</div>
+				<div class="mt-8 flex justify-center">
+					<div class="sparkle-container relative">
+						<img src="/static/images/buildmaestro.png" alt="the Build Maestro" class="sparkle-image">
+						<div class="sparkle-beam"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -449,6 +485,9 @@
 			</div>
 			<div class="mb-4">
 				<p>Remote • Previously San Francisco Bay Area</p>
+			</div>
+			<div class="mb-4">
+				<a href="/work-with-me/" class="text-gray-400 hover:text-white transition-colors">Work with me</a>
 			</div>
 			<p class="mt-4">&copy; {{.Year}} Nicholas Skitch. All rights reserved.</p>
 		</div>

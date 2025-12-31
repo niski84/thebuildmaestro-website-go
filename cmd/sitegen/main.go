@@ -17,7 +17,13 @@ func main() {
 	templateDir := flag.String("template", "templates", "Path to templates directory")
 	staticDir := flag.String("static", "static", "Path to static assets directory")
 	outputDir := flag.String("out", "public", "Path to output directory")
-	canonicalDomain := flag.String("domain", "https://thebuildmaestro.com", "Canonical domain for URLs")
+	
+	// Check for environment variable first, then use default
+	defaultDomain := os.Getenv("CANONICAL_DOMAIN")
+	if defaultDomain == "" {
+		defaultDomain = "https://thebuildmaestro.com"
+	}
+	canonicalDomain := flag.String("domain", defaultDomain, "Canonical domain for URLs")
 
 	flag.Parse()
 

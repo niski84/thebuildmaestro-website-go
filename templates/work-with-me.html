@@ -1,0 +1,186 @@
+{{define "work-with-me.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#0F172A">
+
+	<!-- Tailwind CSS -->
+	<script src="https://cdn.tailwindcss.com"></script>
+	
+	<!-- HTMX -->
+	<script src="https://unpkg.com/htmx.org@2"></script>
+	
+	<!-- Animation System CSS -->
+	<link rel="stylesheet" href="/static/css/animations.css">
+
+	<title>Work with me | Nicholas Skitch</title>
+	
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+		
+		* {
+			font-family: 'Inter', sans-serif;
+		}
+	</style>
+</head>
+<body class="bg-slate-900 text-gray-100 antialiased">
+	<!-- Top Bar -->
+	<div class="bg-slate-800 border-b border-slate-700 py-2">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex justify-between items-center text-sm">
+				<div class="flex items-center space-x-4">
+					<a href="mailto:nick@thebuildmaestro.com" class="text-gray-300 hover:text-white transition-colors">nick@thebuildmaestro.com</a>
+					<span class="text-slate-600">|</span>
+					<a href="tel:+16505495075" class="text-gray-300 hover:text-white transition-colors">(650) 549-5075</a>
+				</div>
+				<div class="flex items-center space-x-4">
+					<a href="https://x.com/nsturnitin" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="Twitter">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+					</a>
+					<a href="https://www.linkedin.com/in/nicholas-s-06589199/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors" aria-label="LinkedIn">
+						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main Navigation -->
+	<nav class="sticky top-0 left-0 right-0 z-50 bg-slate-900 border-b border-slate-700">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex justify-between items-center h-16">
+				<div class="text-xl font-bold text-white">NICHOLAS SKITCH</div>
+				<div class="hidden md:flex space-x-8">
+					<a href="/" class="text-gray-300 hover:text-white transition-colors font-medium">Home</a>
+					<a href="/articles/" class="text-gray-300 hover:text-white transition-colors font-medium">Blog</a>
+					<a href="/about/" class="text-gray-300 hover:text-white transition-colors font-medium">About Me</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Main Content -->
+	<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+		<!-- Back Link -->
+		<div class="mb-8">
+			<a href="/" class="inline-flex items-center text-teal-400 hover:text-teal-300 transition-colors">
+				<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+				</svg>
+				Back to home
+			</a>
+		</div>
+
+		<!-- Page Title -->
+		<h1 class="text-5xl font-bold mb-12 reveal">Work with me</h1>
+
+		<!-- Content -->
+		<div class="prose prose-invert prose-lg max-w-none space-y-8 text-gray-300 leading-relaxed">
+			<p class="text-xl">
+				I work with teams that need reliable automation, delivery systems, and data workflows that hold up under real operational pressure. Depending on the context, that can mean a full-time role, a scoped consulting engagement, or advisory work.
+			</p>
+
+			<p>
+				This page is here to help determine fit before anyone invests time.
+			</p>
+
+			<section class="mt-12">
+				<h2 class="text-3xl font-bold mb-6 text-teal-400">If you're a recruiter or hiring manager</h2>
+				
+				<p>
+					I'm a senior backend and platform engineer with deep experience in Go, PostgreSQL, and cloud automation. My background is rooted in release engineering, systems integration, and long-lived tooling that teams rely on in production.
+				</p>
+
+				<p>
+					I'm open to conversations about roles where ownership matters more than novelty, systems are expected to survive audits, incidents, and change, and reliability and correctness are first-class concerns.
+				</p>
+
+				<p>
+					If that sounds aligned, feel free to reach out and share context about the role and team.
+				</p>
+			</section>
+
+			<section class="mt-12">
+				<h2 class="text-3xl font-bold mb-6 text-teal-400">If you're considering a contract or consulting engagement</h2>
+				
+				<p>
+					I take on a limited number of outside engagements focused on replacing fragile manual processes with durable automation.
+				</p>
+
+				<p>
+					Most engagements are scoped projects rather than open-ended hourly work, defined around outcomes and operational risk, and designed so teams can own and operate the result long-term.
+				</p>
+
+				<p>
+					Typical work includes delivery automation, database migration and recovery workflows, and systems integration where correctness matters.
+				</p>
+
+				<p>
+					Engagements range from focused advisory work to multi-phase automation projects, depending on scope and constraints.
+				</p>
+			</section>
+
+			<section class="mt-12">
+				<h2 class="text-3xl font-bold mb-6 text-teal-400">Availability and scope</h2>
+				
+				<p>
+					I'm selective about outside work and only take on engagements that are clearly defined, non-overlapping, and compatible with my existing professional commitments.
+				</p>
+
+				<p>
+					That means no competitive or conflicting work, clear boundaries around time and scope, and transparency up front about expectations.
+				</p>
+
+				<p>
+					If something isn't a fit, I'll say so early.
+				</p>
+			</section>
+
+			<section class="mt-12">
+				<h2 class="text-3xl font-bold mb-6 text-teal-400">Next steps</h2>
+				
+				<p>
+					If this sounds like a potential fit, the next step is a short conversation to understand the problem space and constraints before discussing scope or approach.
+				</p>
+
+				<p>
+					You can reach me directly at:
+				</p>
+
+				<p class="text-xl">
+					<a href="mailto:nick@thebuildmaestro.com" class="text-teal-400 hover:text-teal-300 transition-colors">nick@thebuildmaestro.com</a>
+				</p>
+			</section>
+		</div>
+	</main>
+
+	<!-- Footer -->
+	<footer class="bg-slate-800 border-t border-slate-700 py-8 mt-20">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+			<div class="mb-4">
+				<a href="mailto:nick@thebuildmaestro.com" class="hover:text-white">nick@thebuildmaestro.com</a>
+				<span class="mx-2">|</span>
+				<a href="https://www.linkedin.com/in/nicholas-s-06589199/" target="_blank" rel="noopener noreferrer" class="hover:text-white">LinkedIn</a>
+				<span class="mx-2">|</span>
+				<a href="https://stackoverflow.com/users/4192486/buildmaestro" target="_blank" rel="noopener noreferrer" class="hover:text-white">Stack Overflow</a>
+				<span class="mx-2">|</span>
+				<a href="tel:+16505495075" class="hover:text-white">(650) 549-5075</a>
+			</div>
+			<div class="mb-4">
+				<p>Remote • Previously San Francisco Bay Area</p>
+			</div>
+			<p class="mt-4">&copy; {{.Year}} Nicholas Skitch. All rights reserved.</p>
+		</div>
+		<img src="/static/images/logo_bottom.png" alt="powered by Go" class="mx-auto mt-8" width="150" height="60">
+	</footer>
+
+	<!-- Animation System JS -->
+	<script src="/static/js/animations.js"></script>
+</body>
+</html>
+{{end}}
+
+

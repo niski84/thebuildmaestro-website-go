@@ -1,0 +1,6 @@
+[metadata]
+title: From RAG to Ambient Intelligence: Why I Moved the Work to the Front of the Pipeline
+author: Nicholas Skitch
+last_updated: 2026-04-26
+written_on: 2026-04-26
+description: Why I gave up on traditional retrieval-first RAG and started classifying intent at ingestion time instead. Notes from building Nogura.

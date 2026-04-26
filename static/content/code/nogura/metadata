@@ -1,0 +1,7 @@
+[metadata]
+title: Nogura - ambient intelligence platform
+author: Nicholas Skitch
+last_updated: 2026-04-26
+written_on: 2026-04-26
+distributions: linux macos
+description: An event-driven ambient intelligence platform written in Go. Listens, classifies intent at ingestion time, and acts through confidence-gated execution. Local LLMs, local vector store, your data stays on your hardware.

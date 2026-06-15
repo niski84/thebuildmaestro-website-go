@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"time"
 )
@@ -40,8 +41,11 @@ func GenerateSite(config Config) error {
 		return fmt.Errorf("failed to initialize template manager: %w", err)
 	}
 
+	// Filter articles to exclude future-dated posts (also used by homepage recent list)
+	publishedArticles := FilterPublishedArticles(registry["articles"])
+
 	// Generate homepage
-	if err := generateHomepage(config, tm); err != nil {
+	if err := generateHomepage(config, tm, publishedArticles); err != nil {
 		return fmt.Errorf("failed to generate homepage: %w", err)
 	}
 
@@ -69,9 +73,6 @@ func GenerateSite(config Config) error {
 	if err := generateWorkWithMePage(config, tm); err != nil {
 		return fmt.Errorf("failed to generate Work with me page: %w", err)
 	}
-
-	// Filter articles to exclude future-dated posts
-	publishedArticles := FilterPublishedArticles(registry["articles"])
 
 	// Generate articles listing
 	if err := generateArticlesListing(config, tm, publishedArticles); err != nil {
@@ -165,15 +166,18 @@ func prepareOutputDir(outputDir string) error {
 }
 
 // generateHomepage generates the new homepage
-func generateHomepage(config Config, tm *TemplateManager) error {
-	log.Printf("generateHomepage")
+func generateHomepage(config Config, tm *TemplateManager, articles map[string]ContentMetadata) error {
+	log.Printf("generateHomepage: articles count=%d", len(articles))
 
 	outputPath := filepath.Join(config.OutputDir, "index.html")
-	
+
+	recent := latestArticles(articles, 3)
+
 	data := TemplateData{
 		Title:         "Home",
 		CanonicalDomain: config.CanonicalDomain,
 		Year:          time.Now().Year(),
+		RecentArticles: recent,
 	}
 
 	html, err := tm.RenderTemplate("home.html", data)
@@ -186,6 +190,43 @@ func generateHomepage(config Config, tm *TemplateManager) error {
 	}
 
 	return nil
+}
+
+// latestArticles returns up to limit articles sorted by written_on date,
+// newest first. Articles with an unparseable written_on date sort last.
+func latestArticles(articles map[string]ContentMetadata, limit int) []ContentMetadata {
+	list := make([]ContentMetadata, 0, len(articles))
+	for _, metadata := range articles {
+		list = append(list, metadata)
+	}
+
+	parseDate := func(m ContentMetadata) (time.Time, bool) {
+		t, err := time.Parse("2006-01-02", m.WrittenOn)
+		if err != nil {
+			return time.Time{}, false
+		}
+		return t, true
+	}
+
+	sort.SliceStable(list, func(i, j int) bool {
+		ti, oki := parseDate(list[i])
+		tj, okj := parseDate(list[j])
+		// Articles with valid dates always come before those without.
+		if oki != okj {
+			return oki
+		}
+		if !oki && !okj {
+			// Both undated: keep deterministic order by ID.
+			return list[i].ID < list[j].ID
+		}
+		// Newest first.
+		return ti.After(tj)
+	})
+
+	if limit >= 0 && len(list) > limit {
+		list = list[:limit]
+	}
+	return list
 }
 
 // generateAboutPage generates the about page

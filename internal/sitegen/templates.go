@@ -19,6 +19,9 @@ type TemplateData struct {
 	
 	// For article/code listings
 	Metadata    map[string]ContentMetadata
+
+	// For homepage: latest articles, newest first
+	RecentArticles []ContentMetadata
 	
 	// For individual article
 	Article     ContentMetadata

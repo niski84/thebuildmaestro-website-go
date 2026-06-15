@@ -438,9 +438,24 @@
 	<section id="blog-preview" class="section-bg py-20">
 		<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 			<h2 class="text-4xl font-bold mb-6 reveal">WHAT'S ON MY MIND</h2>
-			<p class="text-lg text-gray-300 mb-6 reveal">
+			<p class="text-lg text-gray-300 mb-8 reveal">
 				My Blog
 			</p>
+			{{if .RecentArticles}}
+			<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+				{{range .RecentArticles}}
+				<a href="/articles/{{.ID}}/" class="block glass-panel-about px-6 py-6 rounded-lg hover:bg-slate-700/50 transition-colors reveal">
+					<h3 class="text-xl font-semibold mb-2 text-gray-100">{{.Title}}</h3>
+					{{if .Description}}
+					<p class="text-gray-300 text-sm mb-3">{{.Description}}</p>
+					{{end}}
+					{{if .WrittenOn}}
+					<span class="text-gray-500 text-xs italic">{{.WrittenOn}}</span>
+					{{end}}
+				</a>
+				{{end}}
+			</div>
+			{{end}}
 			<a href="/articles/" class="inline-block px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-lg transition-colors reveal">
 				Read the Blog →
 			</a>

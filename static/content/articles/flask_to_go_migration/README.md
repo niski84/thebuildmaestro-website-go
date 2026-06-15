@@ -20,7 +20,7 @@ The result is a single binary that does everything. No virtual environments. No 
 
 ## The Migration
 
-I kept all the existing content structure. The markdown files, the metadata format, the directory layout—all of it stayed the same. That made the migration straightforward. I just had to port the logic from Python to Go.
+I kept all the existing content structure. The markdown files, the metadata format, the directory layout, all of it stayed the same. That made the migration straightforward. I just had to port the logic from Python to Go.
 
 The templates got a refresh too. I converted from Jinja2 to Go templates, swapped Bootstrap for Tailwind, and replaced jQuery with HTMX. The site looks more modern now, but it still feels like the same site. Same content, same structure, just faster and simpler to deploy.
 
@@ -28,7 +28,7 @@ The templates got a refresh too. I converted from Jinja2 to Go templates, swappe
 
 Honestly? Because I wanted to. I've been writing more Go code lately, and it felt like the right time to consolidate. Go compiles to a single binary, which makes deployment trivial. No need to worry about Python versions or dependencies. Just build it and ship it.
 
-Plus, Go's standard library is really solid. File operations, templating, HTTP serving—it's all there. I didn't need to pull in a bunch of external dependencies. The whole generator is pretty lean.
+Plus, Go's standard library is really solid. File operations, templating, HTTP serving, it is all there. I didn't need to pull in a bunch of external dependencies. The whole generator is pretty lean.
 
 ## The Repos
 
@@ -38,5 +38,7 @@ If you want to see the code, both versions are on GitHub:
 - **New Go version**: [github.com/niski84/thebuildmaestro-website-go](https://github.com/niski84/thebuildmaestro-website-go)
 
 The old one still works. The new one does the same thing, just with different tools. Sometimes a rewrite is just about using the tools you want to use.
+
+
 
 
